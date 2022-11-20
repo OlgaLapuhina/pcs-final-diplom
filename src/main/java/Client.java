@@ -14,7 +14,8 @@ public class Client {
              BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
              PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
             System.out.println(in.readLine());
-            out.println("компромисс");
+            out.println("Бизнес");
+            System.out.println(in.readLine());//// корректировка по замечанию: Вы ничего не пишете в ответ клиенту, вы выводите на консоль
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {

@@ -36,7 +36,10 @@ public class BooleanSearchEngine implements SearchEngine {
                         }
                         pageEntryFinal.add(new PageEntry(pdfName, pageEntryPage, entry.getValue()));
 
-                        Collections.sort(pageEntryFinal, Collections.reverseOrder());
+                        //   Collections.sort(pageEntryFinal, Collections.reverseOrder());
+                        //   Корректировка по замечанию: Эффективнее отсортировать каждый список по разу
+                        //   после их заполнения, а не при добавлении каждого элемента в них - сортировку перенесла в
+                        //   метод поиска списка по слову
                         indexing.put(entry.getKey(), pageEntryFinal);
                     }
 
@@ -50,7 +53,9 @@ public class BooleanSearchEngine implements SearchEngine {
 
     @Override
     public List<PageEntry> search(String word) {
-        return indexing.get(word);
+        List<PageEntry> pageEntryResult = new ArrayList<>(indexing.get(word.toLowerCase()));//корректировка по замечанию: Нужно учитывать регистр букв запроса
+        pageEntryResult.sort(Collections.reverseOrder());
+        return pageEntryResult;
     }
 }
 

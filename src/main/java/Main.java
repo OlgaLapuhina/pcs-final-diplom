@@ -30,7 +30,7 @@ public class Main {
                     List<PageEntry> searchResult = engine.search(word);
                     ObjectMapper mapper = new ObjectMapper();
                     String jsonEngine = mapper.writeValueAsString(searchResult);
-                    System.out.println(jsonEngine);
+                    out.println(jsonEngine);// корректировка по замечанию: Вы ничего не пишете в ответ клиенту, вы выводите на консоль
                 }
             }
         } catch (IOException e) {
